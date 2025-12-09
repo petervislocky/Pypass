@@ -1,4 +1,8 @@
+import click
 from rich import print
+from rich.markup import escape
+
+from generator import generate_pswd
 
 
 def display_title() -> None:
@@ -14,8 +18,44 @@ __________
     print("[turquoise4] A Python password generator for your terminal! [/turquoise4]")
 
 
-def main():
+@click.command()
+@click.option(
+    "-l",
+    "--letters",
+    is_flag=True,
+    help="Specify to include standard ascii letters in password.",
+)
+@click.option(
+    "-n",
+    "--numbers",
+    is_flag=True,
+    help="Specify to include numeric values to password.",
+)
+@click.option(
+    "-p",
+    "--punctuation",
+    is_flag=True,
+    help="Specify to include punctuation in the password.",
+)
+@click.option(
+    "-L",
+    "--length",
+    default=16,
+    help="Specify the length of the password to generate. Default is 16. Must be >= 4",
+)
+def main(letters: bool, numbers: bool, punctuation: bool, length: int) -> None:
     display_title()
+
+    if not letters and not numbers and not punctuation:
+        raise click.UsageError("Must include at least one set of chars to include.")
+
+    if length <= 4:
+        raise click.UsageError("Cannot create a password shorter than 4 chars.")
+
+    password = generate_pswd(
+        length=length, letters=letters, digits=numbers, punctuation=punctuation
+    )
+    print(f"[red] Generated password -> [/red] {escape(password)}")
 
 
 if __name__ == "__main__":
