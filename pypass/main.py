@@ -1,4 +1,5 @@
 import click
+import pyperclip
 from rich import print
 from rich.markup import escape
 
@@ -43,7 +44,14 @@ __________
     default=16,
     help="Specify the length of the password to generate. Default is 16. Must be >= 4",
 )
-def main(letters: bool, numbers: bool, punctuation: bool, length: int) -> None:
+@click.option(
+    "--no-copy",
+    is_flag=True,
+    help="Include to stop the program from auto copying to clipboard.",
+)
+def main(
+    letters: bool, numbers: bool, punctuation: bool, length: int, no_copy: bool
+) -> None:
     display_title()
 
     if not letters and not numbers and not punctuation:
@@ -56,6 +64,10 @@ def main(letters: bool, numbers: bool, punctuation: bool, length: int) -> None:
         length=length, letters=letters, digits=numbers, punctuation=punctuation
     )
     print(f"[red] Generated password -> [/red] {escape(password)}")
+
+    if not no_copy:
+        pyperclip.copy(password)
+        print("[turquoise4]Password copied to clipboard![/turquoise4]")
 
 
 if __name__ == "__main__":
