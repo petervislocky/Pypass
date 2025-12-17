@@ -2,7 +2,7 @@ import click
 from rich import print
 from rich.markup import escape
 
-from generator import generate_pswd
+from pypass.generator import generate_pswd
 
 
 def display_title() -> None:
