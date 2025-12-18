@@ -15,8 +15,8 @@ __________
  |____|    / ____||   __(____  /____  >____  >
            \/     |__|       \/     \/     \/
     """
-    print(f"[green] {name_str} [/green]")
-    print("[turquoise4] A Python password generator for your terminal! [/turquoise4]")
+    print(f"[green]{name_str}[/green]")
+    print("[turquoise4]A Python password generator for your terminal![/turquoise4]")
 
 
 @click.command()
@@ -52,22 +52,21 @@ __________
 def main(
     letters: bool, numbers: bool, punctuation: bool, length: int, no_copy: bool
 ) -> None:
-    display_title()
-
     if not letters and not numbers and not punctuation:
         raise click.UsageError("Must include at least one set of chars to include.")
 
     if length <= 4:
         raise click.UsageError("Cannot create a password shorter than 4 chars.")
 
+    display_title()
     password = generate_pswd(
         length=length, letters=letters, digits=numbers, punctuation=punctuation
     )
-    print(f"[red] Generated password -> [/red] {escape(password)}")
+    print(f"[red]Generated password -> [/red] {escape(password)}")
 
     if not no_copy:
         pyperclip.copy(password)
-        print("[turquoise4]Password copied to clipboard![/turquoise4]")
+        print("[turquoise4]Password copied to clipboard.[/turquoise4]")
 
 
 if __name__ == "__main__":
