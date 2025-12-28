@@ -1,7 +1,7 @@
 [project]
 name = "Pypass"
 version = "0.1.0"
-description = "Simple python password manager"
+description = "Simple python password generator"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [

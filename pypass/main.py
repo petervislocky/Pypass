@@ -1,9 +1,13 @@
 import click
 import pyperclip
+import importlib.metadata
 from rich import print
 from rich.markup import escape
 
 from pypass.generator import generate_pswd
+
+
+__version__ = importlib.metadata.version("Pypass")
 
 
 def display_title() -> None:
@@ -49,16 +53,25 @@ __________
     is_flag=True,
     help="Include to stop the program from auto copying to clipboard.",
 )
+@click.option(
+    "--version",
+    is_flag=True,
+    help="Show the version info for the program.",
+)
 def main(
-    letters: bool, numbers: bool, punctuation: bool, length: int, no_copy: bool
+    letters: bool, numbers: bool, punctuation: bool, length: int, no_copy: bool, version: bool
 ) -> None:
+    if version:
+        display_title()
+        print(f"Version: {__version__}")
+        return
+
     if not letters and not numbers and not punctuation:
         raise click.UsageError("Must include at least one set of chars to include.")
 
     if length <= 4:
         raise click.UsageError("Cannot create a password shorter than 4 chars.")
 
-    display_title()
     password = generate_pswd(
         length=length, letters=letters, digits=numbers, punctuation=punctuation
     )
