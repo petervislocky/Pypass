@@ -20,7 +20,7 @@ __________
            \/     |__|       \/     \/     \/
     """
     print(f"[green]{name_str}[/green]")
-    print("[turquoise4]A Python password generator for your terminal![/turquoise4]")
+    print("[turquoise4]A Python password generator for your terminal.[/turquoise4]")
 
 
 @click.command()
@@ -63,7 +63,7 @@ def main(
 ) -> None:
     if version:
         display_title()
-        print(f"Version: {__version__}")
+        print(f"Version {__version__}")
         return
 
     if not letters and not numbers and not punctuation:
