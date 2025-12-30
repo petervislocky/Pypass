@@ -2,6 +2,9 @@
 name = "Pypass"
 version = "0.1.0"
 description = "Simple python password generator"
+authors = [
+    {"name" = "Peter Vislocky"}
+]
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [

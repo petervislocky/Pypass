@@ -1,13 +1,10 @@
 import click
 import pyperclip
-import importlib.metadata
 from rich import print
 from rich.markup import escape
 
 from pypass.generator import generate_pswd
-
-
-__version__ = importlib.metadata.version("Pypass")
+from pypass import __version__
 
 
 def display_title() -> None:
