@@ -3,8 +3,8 @@ import pyperclip
 from rich import print
 from rich.markup import escape
 
-from pypass.generator import generate_pswd
 from pypass import __version__
+from pypass.generator import generate_pswd
 
 
 def display_title() -> None:
@@ -56,7 +56,12 @@ __________
     help="Show the version info for the program.",
 )
 def main(
-    letters: bool, numbers: bool, punctuation: bool, length: int, no_copy: bool, version: bool
+    letters: bool,
+    numbers: bool,
+    punctuation: bool,
+    length: int,
+    no_copy: bool,
+    version: bool,
 ) -> None:
     if version:
         display_title()
