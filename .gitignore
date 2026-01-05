@@ -8,3 +8,10 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Pycharm
+.idea
+*.iml
+
+# Pytest
+.pytest_cache/
